@@ -107,35 +107,14 @@ modulejs.define('ext/dropbox', ['_', '$', 'core/settings', 'core/location', 'cor
 					},
 
 					error: function (err, file) {
-            switch(err) {
-              case 'BrowserNotSupported':
-                alert('browser does not support html5 drag and drop');
-                break;
-              case 'TooManyFiles':
-                // user uploaded more than 'maxfiles'
-                alert('too many files');
-                break;
-              case 'FileTooLarge':
-                // program encountered a file whose size is greater than 'maxfilesize'
-                // FileTooLarge also has access to the file which was too large
-                // use file.name to reference the filename of the culprit file
-                alert('file to large');
-                break;
-              case 'FileTypeNotAllowed':
-                // The file type is not in the specified list 'allowedfiletypes'
-                alert('file type not allowed');
-              default:
-                alert('other error');
-                break;
-            }
 						afterUpload(err, file);
 					}
 				});
 			});
 
 			event.sub('location.changed', function (item) {
-        // progress should be visible even if the location has changed, so don't empty it
-        // $('#uploads').empty();
+				// progress should be visible even if the location has changed, so don't empty it
+				// $('#uploads').empty();
 
 				data.href = item.absHref;
 			});
