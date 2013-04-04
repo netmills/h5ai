@@ -4,3 +4,7 @@ local
 *.sublime-*
 
 test
+
+.idea
+.DS_Store
+Thumbs.db

@@ -6,6 +6,9 @@ Options
 */
 
 {
+    "rootAbsHref": "/~netmills/",
+    "h5aiAbsHref": "/~netmills/_h5ai/",
+
 	/*
 	Spacing of the main content.
 
