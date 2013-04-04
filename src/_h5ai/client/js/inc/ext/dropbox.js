@@ -21,8 +21,13 @@ modulejs.define('ext/dropbox', ['_', '$', 'core/settings', 'core/location', 'cor
 				return;
 			}
 
-			var $content = $('#content').append(template),
-				data = {};
+			var $content = $('#content').append(template);
+
+			// init default values, data.href will be updated in location.change event
+			var data = {
+				action: 'upload',
+				href: location.getAbsHref()
+			};
 
 			var uploads = {},
 				afterUpload = function (err, file) {
@@ -50,7 +55,6 @@ modulejs.define('ext/dropbox', ['_', '$', 'core/settings', 'core/location', 'cor
 
 					maxfiles: settings.maxfiles,
 					maxfilesize: settings.maxfilesize,
-					url: location.getAbsHref(),
 					data: data,
 
 					docEnter: function () {
@@ -103,22 +107,40 @@ modulejs.define('ext/dropbox', ['_', '$', 'core/settings', 'core/location', 'cor
 					},
 
 					error: function (err, file) {
-
+            switch(err) {
+              case 'BrowserNotSupported':
+                alert('browser does not support html5 drag and drop');
+                break;
+              case 'TooManyFiles':
+                // user uploaded more than 'maxfiles'
+                alert('too many files');
+                break;
+              case 'FileTooLarge':
+                // program encountered a file whose size is greater than 'maxfilesize'
+                // FileTooLarge also has access to the file which was too large
+                // use file.name to reference the filename of the culprit file
+                alert('file to large');
+                break;
+              case 'FileTypeNotAllowed':
+                // The file type is not in the specified list 'allowedfiletypes'
+                alert('file type not allowed');
+              default:
+                alert('other error');
+                break;
+            }
 						afterUpload(err, file);
 					}
 				});
 			});
 
 			event.sub('location.changed', function (item) {
+        // progress should be visible even if the location has changed, so don't empty it
+        // $('#uploads').empty();
 
-				$('#uploads').empty();
-				data = {
-					action: 'upload',
-					href: item.absHref
-				};
+				data.href = item.absHref;
 			});
 		};
 
 	// disabled while broken
-	// init();
+	init();
 });

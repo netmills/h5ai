@@ -1,0 +1,5 @@
+#!/bin/bash
+
+makejs clean build-uncompressed
+cp -r build/_h5ai ~/Sites/.
+chmod a+w ~/Sites/_h5ai/cache/
