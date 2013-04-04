@@ -42,7 +42,7 @@ Options
 		"modes": ["details", "icons", "grid", "list"],
 		"setParentFolderLabels": true,
 		"binaryPrefix": false,
-		"indexFiles": ["index.html", "index.htm", "index.php"],
+		"indexFiles": [], // ["index.html", "index.htm", "index.php"],
 		"ignore": ["^\\.", "^_{{pkg.name}}"],
 		"smartBrowsing": true,
 		"extInNewWindow": true
@@ -50,7 +50,7 @@ Options
 
 
 
-	/*** Extensions (in alphabetical order) ***/
+	/*-- Extensions (in alphabetical order) --*/
 
 	/*
 	Watch and update current folder content.
@@ -107,7 +107,7 @@ Options
 	- packageName: basename of the download package, null for current foldername
 	*/
 	"download": {
-		"enabled": false,
+		"enabled": true,
 		"execution": "shell",
 		"format": "zip",
 		"packageName": null
@@ -181,7 +181,7 @@ Options
 		2: mode, servername and -version
 	*/
 	"mode": {
-		"enabled": false,
+		"enabled": true,
 		"display": 2
 	},
 
@@ -251,7 +251,7 @@ Options
 	- size: width and height in pixel
 	*/
 	"qrcode": {
-		"enabled": false,
+		"enabled": true,
 		"size": 150
 	},
 
@@ -260,7 +260,7 @@ Options
 	No GUI yet.
 	*/
 	"rename": {
-		"enabled": false
+		"enabled": true
 	},
 
 	/*
